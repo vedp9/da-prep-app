@@ -1,0 +1,1707 @@
+[
+  {
+    "id": "sql_mcq_001",
+    "topic": "SQL",
+    "subtopic": "Execution Order",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Which of the following represents the correct logical order of execution of SQL clauses?",
+    "options": [
+      "SELECT -> FROM -> WHERE -> GROUP BY -> HAVING -> ORDER BY",
+      "FROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY",
+      "FROM -> WHERE -> SELECT -> GROUP BY -> HAVING -> ORDER BY",
+      "SELECT -> FROM -> WHERE -> ORDER BY -> GROUP BY -> HAVING"
+    ],
+    "correct_answer": "FROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY",
+    "explanation": "In SQL, the database engine executes clauses in the following order: FROM (identify table), WHERE (filter rows), GROUP BY (aggregate rows), HAVING (filter groups), SELECT (project columns), and finally ORDER BY (sort output).",
+    "xp_reward": 10
+  },
+  {
+    "id": "sql_mcq_002",
+    "topic": "SQL",
+    "subtopic": "Joins",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Which type of JOIN returns all records from the left table, and matching records from the right table, filling with NULLs when there is no match?",
+    "options": [
+      "INNER JOIN",
+      "LEFT JOIN",
+      "RIGHT JOIN",
+      "FULL OUTER JOIN"
+    ],
+    "correct_answer": "LEFT JOIN",
+    "explanation": "A LEFT JOIN returns all rows from the left table, along with matched rows from the right table. If no match exists, NULL values are returned for the right table's columns.",
+    "xp_reward": 10
+  },
+  {
+    "id": "sql_mcq_003",
+    "topic": "SQL",
+    "subtopic": "Filtering",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What is the key difference between the WHERE and HAVING clauses in SQL?",
+    "options": [
+      "WHERE is used to filter rows before grouping, while HAVING filters groups after GROUP BY.",
+      "WHERE is used to filter groups, while HAVING is used to filter individual rows.",
+      "WHERE can contain aggregate functions like SUM(), whereas HAVING cannot.",
+      "There is no difference; they are completely interchangeable."
+    ],
+    "correct_answer": "WHERE is used to filter rows before grouping, while HAVING filters groups after GROUP BY.",
+    "explanation": "WHERE filters rows before any grouping occurs. HAVING is applied after rows have been grouped and aggregated by a GROUP BY clause, allowing filtering on aggregated metrics.",
+    "xp_reward": 25
+  },
+  {
+    "id": "sql_mcq_004",
+    "topic": "SQL",
+    "subtopic": "Window Functions",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which window function assigns a unique sequential integer to rows within a partition, starting at 1, regardless of duplicate values (ties) in the ordering column?",
+    "options": [
+      "RANK()",
+      "DENSE_RANK()",
+      "ROW_NUMBER()",
+      "LAG()"
+    ],
+    "correct_answer": "ROW_NUMBER()",
+    "explanation": "ROW_NUMBER() assigns a unique, contiguous number to each row within a partition. Unlike RANK() or DENSE_RANK(), it does not assign the same value to tied rows.",
+    "xp_reward": 25
+  },
+  {
+    "id": "sql_mcq_005",
+    "topic": "SQL",
+    "subtopic": "Window Functions",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What is the behavior of the RANK() window function when two rows tie for the first place?",
+    "options": [
+      "It assigns 1 to both rows, and the next row is assigned 2.",
+      "It assigns 1 to both rows, and the next row is assigned 3.",
+      "It throws an error because ties must be resolved explicitly.",
+      "It assigns 1 to the first row and 2 to the second row based on internal storage order."
+    ],
+    "correct_answer": "It assigns 1 to both rows, and the next row is assigned 3.",
+    "explanation": "RANK() leaves gaps in the ranking sequence. If two rows tie for 1st place, they both get rank 1, and the next rank assigned is 3 (skipping rank 2).",
+    "xp_reward": 25
+  },
+  {
+    "id": "sql_mcq_006",
+    "topic": "SQL",
+    "subtopic": "Subqueries",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "How does a correlated subquery differ from a non-correlated subquery?",
+    "options": [
+      "A correlated subquery runs independently of the outer query, whereas a non-correlated subquery depends on it.",
+      "A correlated subquery is executed once for each row evaluated by the outer query because it references columns from the outer query.",
+      "A correlated subquery cannot be used in the WHERE clause, only in the SELECT clause.",
+      "A correlated subquery executes faster because it is pre-compiled by the engine."
+    ],
+    "correct_answer": "A correlated subquery is executed once for each row evaluated by the outer query because it references columns from the outer query.",
+    "explanation": "A correlated subquery references columns from the outer query. Consequently, it must execute once for every row processed by the outer query, which can make it computationally expensive.",
+    "xp_reward": 50
+  },
+  {
+    "id": "sql_mcq_007",
+    "topic": "SQL",
+    "subtopic": "Set Operators",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "Which SQL set operator combines the results of two queries, returns only unique rows, and automatically removes duplicate rows from the final result set?",
+    "options": [
+      "UNION ALL",
+      "UNION",
+      "INTERSECT ALL",
+      "EXCEPT ALL"
+    ],
+    "correct_answer": "UNION",
+    "explanation": "The UNION operator combines rows from two queries and filters out duplicate rows to ensure uniqueness. UNION ALL combines all rows including duplicates.",
+    "xp_reward": 50
+  },
+  {
+    "id": "sql_mcq_008",
+    "topic": "SQL",
+    "subtopic": "Views",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "What is the key performance difference between a standard View and a Materialized View in a relational database?",
+    "options": [
+      "A standard View stores data on disk, while a Materialized View is always computed in-memory.",
+      "A standard View is computed dynamically on each execution, whereas a Materialized View stores the query results physically on disk and is updated periodically.",
+      "A Materialized View cannot be queried with SELECT statements, only standard Views can.",
+      "There is no difference; they are synonyms in all database engines."
+    ],
+    "correct_answer": "A standard View is computed dynamically on each execution, whereas a Materialized View stores the query results physically on disk and is updated periodically.",
+    "explanation": "Standard views are virtual tables whose queries run every time they are accessed. Materialized views precompute and physically store the query results on disk, speeding up read access at the cost of storage and update latency.",
+    "xp_reward": 50
+  },
+  {
+    "id": "sql_code_001",
+    "topic": "SQL",
+    "subtopic": "Basic SELECT",
+    "difficulty": "easy",
+    "type": "interactive_coding",
+    "question": "Write a query to retrieve the top 5 customers from the 'orders' table sorted by their total sales in descending order.",
+    "context": {
+      "tableName": "orders",
+      "columns": [
+        "customer_name",
+        "sales",
+        "order_date"
+      ]
+    },
+    "options": [
+      "FROM orders",
+      "SELECT customer_name, SUM(sales)",
+      "WHERE sales > 100",
+      "ORDER BY SUM(sales) DESC",
+      "LIMIT 5;",
+      "GROUP BY customer_name",
+      "HAVING total_sales > 5",
+      "ORDER BY customer_name",
+      "SELECT *",
+      "GROUP BY sales"
+    ],
+    "correct_answer": [
+      "SELECT customer_name, SUM(sales)",
+      "FROM orders",
+      "GROUP BY customer_name",
+      "ORDER BY SUM(sales) DESC",
+      "LIMIT 5;"
+    ],
+    "explanation": "To get the top 5 customers by sales, we SELECT the customer_name and SUM(sales), group by customer_name, order the summed sales in descending order, and limit the result to 5.",
+    "xp_reward": 10
+  },
+  {
+    "id": "sql_code_002",
+    "topic": "SQL",
+    "subtopic": "Joins",
+    "difficulty": "easy",
+    "type": "interactive_coding",
+    "question": "Perform an INNER JOIN between the 'orders' (o) and 'customers' (c) tables on customer_id, selecting order_id and customer name.",
+    "context": {
+      "tableName": "orders, customers",
+      "columns": [
+        "o.order_id",
+        "o.customer_id",
+        "c.customer_id",
+        "c.name"
+      ]
+    },
+    "options": [
+      "ON o.customer_id = c.customer_id;",
+      "WHERE o.customer_id = c.customer_id",
+      "INNER JOIN customers c",
+      "LEFT JOIN customers c",
+      "FROM orders o",
+      "USING customer_id",
+      "SELECT o.order_id, c.name",
+      "ON o.order_id = c.customer_id"
+    ],
+    "correct_answer": [
+      "SELECT o.order_id, c.name",
+      "FROM orders o",
+      "INNER JOIN customers c",
+      "ON o.customer_id = c.customer_id;"
+    ],
+    "explanation": "An INNER JOIN matches records with equal values in customer_id across both tables. Using table aliases (o, c) specifies which tables columns belong to.",
+    "xp_reward": 10
+  },
+  {
+    "id": "sql_code_003",
+    "topic": "SQL",
+    "subtopic": "Filtering",
+    "difficulty": "medium",
+    "type": "interactive_coding",
+    "question": "Find all categories in the 'products' table where the average price is greater than 150.",
+    "context": {
+      "tableName": "products",
+      "columns": [
+        "category",
+        "price"
+      ]
+    },
+    "options": [
+      "FROM products",
+      "WHERE AVG(price) > 150",
+      "SELECT category, AVG(price)",
+      "GROUP BY category",
+      "HAVING AVG(price) > 150;",
+      "WHERE price > 150",
+      "ORDER BY price DESC",
+      "GROUP BY price"
+    ],
+    "correct_answer": [
+      "SELECT category, AVG(price)",
+      "FROM products",
+      "GROUP BY category",
+      "HAVING AVG(price) > 150;"
+    ],
+    "explanation": "Since we filter on the aggregated average price, we must use the HAVING clause instead of WHERE, placed after GROUP BY.",
+    "xp_reward": 25
+  },
+  {
+    "id": "sql_code_004",
+    "topic": "SQL",
+    "subtopic": "Subqueries",
+    "difficulty": "medium",
+    "type": "interactive_coding",
+    "question": "Write a query to find the second highest salary from the 'employees' table using a subquery.",
+    "context": {
+      "tableName": "employees",
+      "columns": [
+        "salary"
+      ]
+    },
+    "options": [
+      "SELECT DISTINCT salary",
+      "ORDER BY salary DESC LIMIT 1 OFFSET 1",
+      "FROM employees",
+      "SELECT MAX(salary)",
+      "WHERE salary <",
+      "(SELECT MAX(salary) FROM employees);",
+      "WHERE salary =",
+      "GROUP BY salary"
+    ],
+    "correct_answer": [
+      "SELECT MAX(salary)",
+      "FROM employees",
+      "WHERE salary <",
+      "(SELECT MAX(salary) FROM employees);"
+    ],
+    "explanation": "The query finds the maximum salary that is strictly less than the overall maximum salary, which effectively retrieves the second-highest salary.",
+    "xp_reward": 25
+  },
+  {
+    "id": "sql_code_005",
+    "topic": "SQL",
+    "subtopic": "Window Functions",
+    "difficulty": "medium",
+    "type": "interactive_coding",
+    "question": "Calculate the running total of sales for each region in chronological order of order_date using a window function.",
+    "context": {
+      "tableName": "orders",
+      "columns": [
+        "region",
+        "order_date",
+        "sales"
+      ]
+    },
+    "options": [
+      "GROUP BY region",
+      "SUM(sales) OVER",
+      "ORDER BY region, order_date",
+      "SELECT region, order_date, sales,",
+      "SUM(sales) OVER (ORDER BY region)",
+      "(PARTITION BY region",
+      "ORDER BY order_date)",
+      "AS running_total FROM orders;",
+      "ROW_NUMBER() OVER"
+    ],
+    "correct_answer": [
+      "SELECT region, order_date, sales,",
+      "SUM(sales) OVER",
+      "(PARTITION BY region",
+      "ORDER BY order_date)",
+      "AS running_total FROM orders;"
+    ],
+    "explanation": "To calculate a partition-specific running total, we use SUM(sales) OVER with PARTITION BY region and ORDER BY order_date.",
+    "xp_reward": 25
+  },
+  {
+    "id": "sql_code_006",
+    "topic": "SQL",
+    "subtopic": "CTEs",
+    "difficulty": "hard",
+    "type": "interactive_coding",
+    "question": "Write a query using a CTE named 'monthly_sales' to calculate total sales by month, and then select the month with sales exceeding 50000.",
+    "context": {
+      "tableName": "orders",
+      "columns": [
+        "order_date",
+        "sales"
+      ]
+    },
+    "options": [
+      "WHERE total > 50000;",
+      "WITH monthly_sales AS (",
+      "SELECT FROM monthly_sales",
+      "SELECT DATE_TRUNC('month', order_date) AS month, SUM(sales) AS total",
+      "FROM orders GROUP BY 1)",
+      "SELECT month, total FROM monthly_sales",
+      "HAVING total > 50000",
+      "WHERE SUM(sales) > 50000",
+      "SELECT DISTINCT month"
+    ],
+    "correct_answer": [
+      "WITH monthly_sales AS (",
+      "SELECT DATE_TRUNC('month', order_date) AS month, SUM(sales) AS total",
+      "FROM orders GROUP BY 1)",
+      "SELECT month, total FROM monthly_sales",
+      "WHERE total > 50000;"
+    ],
+    "explanation": "A CTE is defined using the WITH statement. We group sales by the truncated month date, and then query the CTE using a standard WHERE clause to filter for totals > 50000.",
+    "xp_reward": 50
+  },
+  {
+    "id": "sql_code_007",
+    "topic": "SQL",
+    "subtopic": "Window Functions",
+    "difficulty": "hard",
+    "type": "interactive_coding",
+    "question": "Find the month-over-month sales growth percentage. Retrieve the current month's sales and the previous month's sales using LAG().",
+    "context": {
+      "tableName": "monthly_revenue",
+      "columns": [
+        "month",
+        "sales"
+      ]
+    },
+    "options": [
+      "LEAD(sales) OVER (ORDER BY month)",
+      "SELECT month, sales,",
+      "LAG(sales) OVER (ORDER BY month) AS prev_sales,",
+      "SUM(sales) OVER (PARTITION BY month)",
+      "(sales - LAG(sales) OVER (ORDER BY month)) * 100.0 /",
+      "LAG(sales) OVER (ORDER BY month) AS growth_pct",
+      "FROM monthly_revenue;",
+      "GROUP BY month",
+      "ORDER BY month DESC"
+    ],
+    "correct_answer": [
+      "SELECT month, sales,",
+      "LAG(sales) OVER (ORDER BY month) AS prev_sales,",
+      "(sales - LAG(sales) OVER (ORDER BY month)) * 100.0 /",
+      "LAG(sales) OVER (ORDER BY month) AS growth_pct",
+      "FROM monthly_revenue;"
+    ],
+    "explanation": "To calculate MoM growth, we fetch the previous month's sales using LAG(sales) OVER (ORDER BY month), and then apply the formula: (current - previous) * 100.0 / previous.",
+    "xp_reward": 50
+  },
+  {
+    "id": "sql_code_008",
+    "topic": "SQL",
+    "subtopic": "Window Functions",
+    "difficulty": "hard",
+    "type": "interactive_coding",
+    "question": "Find the top 3 highest-earning employees in each department using DENSE_RANK().",
+    "context": {
+      "tableName": "employees",
+      "columns": [
+        "name",
+        "salary",
+        "department_id"
+      ]
+    },
+    "options": [
+      "WITH ranked_employees AS (",
+      "ROW_NUMBER() OVER (ORDER BY salary)",
+      "SELECT name, salary, department_id,",
+      "RANK() OVER (PARTITION BY salary)",
+      "DENSE_RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS rnk",
+      "FROM employees)",
+      "SELECT name, salary, department_id FROM ranked_employees WHERE rnk <= 3;",
+      "WHERE rnk < 3",
+      "GROUP BY department_id"
+    ],
+    "correct_answer": [
+      "WITH ranked_employees AS (",
+      "SELECT name, salary, department_id,",
+      "DENSE_RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS rnk",
+      "FROM employees)",
+      "SELECT name, salary, department_id FROM ranked_employees WHERE rnk <= 3;"
+    ],
+    "explanation": "DENSE_RANK() handles ties without gaps in rank numbers. Wrapping this in a CTE (ranked_employees) allows filtering by the calculated rank in the outer query.",
+    "xp_reward": 50
+  },
+  {
+    "id": "py_mcq_001",
+    "topic": "Python",
+    "subtopic": "Data Types",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Which of the following built-in data types in Python is mutable?",
+    "options": [
+      "tuple",
+      "list",
+      "str",
+      "int"
+    ],
+    "correct_answer": "list",
+    "explanation": "Lists in Python are mutable, meaning their elements can be changed or added/removed in place. Tuples, strings, and integers are immutable.",
+    "xp_reward": 10
+  },
+  {
+    "id": "py_mcq_002",
+    "topic": "Python",
+    "subtopic": "Pandas DataFrames",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Which Pandas method is used to display a concise summary of a DataFrame, including data types and non-null values?",
+    "options": [
+      "df.describe()",
+      "df.info()",
+      "df.summary()",
+      "df.head()"
+    ],
+    "correct_answer": "df.info()",
+    "explanation": "df.info() returns index data types, column data types, non-null values, and memory usage. df.describe() displays descriptive statistics.",
+    "xp_reward": 10
+  },
+  {
+    "id": "py_mcq_003",
+    "topic": "Python",
+    "subtopic": "List Comprehension",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What is the output of the following list comprehension: `[x**2 for x in range(5) if x % 2 == 0]`?",
+    "options": [
+      "[0, 4, 16]",
+      "[0, 2, 4]",
+      "[4, 16]",
+      "[1, 9]"
+    ],
+    "correct_answer": "[0, 4, 16]",
+    "explanation": "range(5) generates numbers 0, 1, 2, 3, 4. The condition `x % 2 == 0` filters for even numbers: 0, 2, 4. Squaring these gives 0, 4, 16.",
+    "xp_reward": 25
+  },
+  {
+    "id": "py_mcq_004",
+    "topic": "Python",
+    "subtopic": "Pandas Filtering",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "How do you filter a Pandas DataFrame 'df' for rows where 'Sales' > 1000 and 'Profit' > 100?",
+    "options": [
+      "df[(df['Sales'] > 1000) & (df['Profit'] > 100)]",
+      "df[df['Sales'] > 1000 and df['Profit'] > 100]",
+      "df.filter(Sales > 1000 & Profit > 100)",
+      "df[(df['Sales'] > 1000) | (df['Profit'] > 100)]"
+    ],
+    "correct_answer": "df[(df['Sales'] > 1000) & (df['Profit'] > 100)]",
+    "explanation": "In Pandas, bitwise operators (&, |) must be used instead of logical operators (and, or) for element-wise boolean operations, and each condition must be wrapped in parentheses.",
+    "xp_reward": 25
+  },
+  {
+    "id": "py_mcq_005",
+    "topic": "Python",
+    "subtopic": "Pandas Grouping",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which Pandas function is equivalent to the SQL 'GROUP BY' clause?",
+    "options": [
+      "df.groupby()",
+      "df.pivot_table()",
+      "df.aggregate()",
+      "df.merge()"
+    ],
+    "correct_answer": "df.groupby()",
+    "explanation": "df.groupby() splits the data into groups based on some criteria, which is directly equivalent to the GROUP BY clause in SQL.",
+    "xp_reward": 25
+  },
+  {
+    "id": "py_mcq_006",
+    "topic": "Python",
+    "subtopic": "Lambda Functions",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "What does `df['col'].apply(lambda x: x * 2 if x > 5 else x)` do?",
+    "options": [
+      "It doubles values in 'col' that are greater than 5, leaving other values unchanged.",
+      "It multiplies all values in 'col' by 2.",
+      "It filters the DataFrame to only keep rows where values in 'col' are greater than 5.",
+      "It raises a SyntaxError because 'apply' does not support 'if-else' statements."
+    ],
+    "correct_answer": "It doubles values in 'col' that are greater than 5, leaving other values unchanged.",
+    "explanation": "The apply function maps the lambda function over each element in the column 'col'. The inline if-else doubles the element if it is > 5, otherwise returns the element as-is.",
+    "xp_reward": 50
+  },
+  {
+    "id": "py_mcq_007",
+    "topic": "Python",
+    "subtopic": "Memory Optimization",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "When dealing with large datasets in Pandas, which data type conversion is most effective for memory optimization of low-cardinality text columns?",
+    "options": [
+      "Convert to 'category'",
+      "Convert to 'object'",
+      "Convert to 'string'",
+      "Convert to 'int32'"
+    ],
+    "correct_answer": "Convert to 'category'",
+    "explanation": "Converting a text column with repeating values (low-cardinality) to the 'category' dtype stores values as integer codes mapping to unique categories, which drastically reduces memory usage.",
+    "xp_reward": 50
+  },
+  {
+    "id": "py_mcq_008",
+    "topic": "Python",
+    "subtopic": "Data Cleaning",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "In Pandas, what is the correct behavior of the parameter `inplace=True` in methods like `df.drop_duplicates()`?",
+    "options": [
+      "It performs the operation on the DataFrame and returns a new DataFrame copy.",
+      "It modifies the original DataFrame directly and returns None.",
+      "It saves the cleaned DataFrame directly to a CSV file.",
+      "It guarantees thread-safety during the execution of the operation."
+    ],
+    "correct_answer": "It modifies the original DataFrame directly and returns None.",
+    "explanation": "Setting `inplace=True` modifies the DataFrame in-place without creating a copy, and returns None. By default (`inplace=False`), the method returns a new DataFrame with the changes applied.",
+    "xp_reward": 50
+  },
+  {
+    "id": "py_code_001",
+    "topic": "Python",
+    "subtopic": "Pandas Basics",
+    "difficulty": "easy",
+    "type": "interactive_coding",
+    "question": "Complete the code to import pandas, read 'data.csv', and show the first 5 rows.",
+    "options": [
+      "import pandas as pd",
+      "import matplotlib.pyplot as plt",
+      "df = pd.read_csv('data.csv')",
+      "df = pd.DataFrame('data.csv')",
+      "print(df.info())",
+      "df.show(5)",
+      "print(df.head())"
+    ],
+    "correct_answer": [
+      "import pandas as pd",
+      "df = pd.read_csv('data.csv')",
+      "print(df.head())"
+    ],
+    "explanation": "We import pandas as pd, read the CSV file using read_csv(), and display the first 5 rows by calling df.head() inside print().",
+    "xp_reward": 10
+  },
+  {
+    "id": "py_code_002",
+    "topic": "Python",
+    "subtopic": "Lists",
+    "difficulty": "easy",
+    "type": "interactive_coding",
+    "question": "Append the number 5 to 'my_list' and remove 'hello'.",
+    "options": [
+      "my_list.append(5)",
+      "my_list.remove('hello')",
+      "my_list.add(5)",
+      "my_list.pop('hello')",
+      "my_list.insert(5)",
+      "my_list.delete('hello')"
+    ],
+    "correct_answer": [
+      "my_list.append(5)",
+      "my_list.remove('hello')"
+    ],
+    "explanation": "In Python, `append()` adds an element to the end of a list, and `remove()` searches for and deletes the first matching element value.",
+    "xp_reward": 10
+  },
+  {
+    "id": "py_code_003",
+    "topic": "Python",
+    "subtopic": "Pandas Filtering",
+    "difficulty": "medium",
+    "type": "interactive_coding",
+    "question": "Filter DataFrame 'df' for rows where Profit is less than 0, and subset the result to only keep 'Sales' and 'Profit' columns.",
+    "options": [
+      "df_filtered = df[df['Profit'] < 0]",
+      "df_filtered = df[df.Profit < 0]",
+      "result = df_filtered[['Sales', 'Profit']]",
+      "result = df_filtered['Sales', 'Profit']",
+      "df_filtered = df.filter('Profit < 0')",
+      "result = df_filtered.select('Sales', 'Profit')"
+    ],
+    "correct_answer": [
+      "df_filtered = df[df['Profit'] < 0]",
+      "result = df_filtered[['Sales', 'Profit']]"
+    ],
+    "explanation": "First, we filter the DataFrame by checking boolean mask `df['Profit'] < 0`. Then, we subset the columns using double square brackets `[['Sales', 'Profit']]`.",
+    "xp_reward": 25
+  },
+  {
+    "id": "py_code_004",
+    "topic": "Python",
+    "subtopic": "Pandas Grouping",
+    "difficulty": "medium",
+    "type": "interactive_coding",
+    "question": "Group the DataFrame 'df' by 'Category', sum the 'Sales' column, and sort the result in descending order.",
+    "options": [
+      "df.groupby('Category')['Sales']",
+      ".sort(ascending=False)",
+      "df.group('Category').Sales",
+      ".sum()",
+      ".aggregate('sum')",
+      ".orderby(desc=True)",
+      ".sort_values(ascending=False)"
+    ],
+    "correct_answer": [
+      "df.groupby('Category')['Sales']",
+      ".sum()",
+      ".sort_values(ascending=False)"
+    ],
+    "explanation": "We group by 'Category', select the 'Sales' column, call `.sum()` to aggregate, and chain `.sort_values(ascending=False)` to sort descending.",
+    "xp_reward": 25
+  },
+  {
+    "id": "py_code_005",
+    "topic": "Python",
+    "subtopic": "Data Cleaning",
+    "difficulty": "medium",
+    "type": "interactive_coding",
+    "question": "Count the total number of missing values in each column of DataFrame 'df'.",
+    "options": [
+      "null_counts = df.isnull()",
+      ".sum()",
+      ".count()",
+      "null_counts = df.nan()",
+      ".add()",
+      "null_counts = df.isnone()"
+    ],
+    "correct_answer": [
+      "null_counts = df.isnull()",
+      ".sum()"
+    ],
+    "explanation": "`df.isnull()` returns a DataFrame of booleans (True for nulls), and calling `.sum()` aggregates these column-wise, counting the number of True values (1s).",
+    "xp_reward": 25
+  },
+  {
+    "id": "py_code_006",
+    "topic": "Python",
+    "subtopic": "Lambda Functions",
+    "difficulty": "hard",
+    "type": "interactive_coding",
+    "question": "Create a new column 'Profit_Status' that stores 'Profitable' if Profit > 0, otherwise 'Loss', using a lambda function with apply.",
+    "options": [
+      "df['Profit_Status'] =",
+      "lambda x: 'Profitable' if Profit > 0 else 'Loss'",
+      "df.apply(lambda x: 'Profitable' if x > 0)",
+      "df['Profit'].apply(",
+      "df['Profit'].map('Profitable' if x > 0)",
+      "df['Profit_Status'].apply()",
+      "lambda x: 'Profitable' if x > 0 else 'Loss')"
+    ],
+    "correct_answer": [
+      "df['Profit_Status'] =",
+      "df['Profit'].apply(",
+      "lambda x: 'Profitable' if x > 0 else 'Loss')"
+    ],
+    "explanation": "We assign a new column by calling `.apply()` on `df['Profit']` with a lambda function that evaluates each value `x` using an inline conditional statement.",
+    "xp_reward": 50
+  },
+  {
+    "id": "py_code_007",
+    "topic": "Python",
+    "subtopic": "Data Cleaning",
+    "difficulty": "hard",
+    "type": "interactive_coding",
+    "question": "Replace all missing values in column 'Age' with the median value of that column in place.",
+    "options": [
+      "median_age = df['Age'].median()",
+      "df['Age'].fillna(median_age,",
+      "df['Age'].replace(NaN, median_age)",
+      "df['Age'].drop_na(median_age)",
+      "inplace=False",
+      "df['Age'].mean()",
+      "inplace=True)"
+    ],
+    "correct_answer": [
+      "median_age = df['Age'].median()",
+      "df['Age'].fillna(median_age,",
+      "inplace=True)"
+    ],
+    "explanation": "We calculate the median age using `df['Age'].median()`. Then we fill missing values using `fillna()`, passing the median age and setting `inplace=True` to alter the original DataFrame.",
+    "xp_reward": 50
+  },
+  {
+    "id": "py_code_008",
+    "topic": "Python",
+    "subtopic": "Outliers",
+    "difficulty": "hard",
+    "type": "interactive_coding",
+    "question": "Identify outliers in column 'Sales' using the IQR method. Calculate the upper bound.",
+    "options": [
+      "Q1 = df['Sales'].quantile(0.25)",
+      "Q3 = df['Sales'].quantile(0.75)",
+      "IQR = Q3 - Q1",
+      "upper_bound = Q3 + 3 * IQR",
+      "IQR = Q1 - Q3",
+      "df['Sales'].std() * 3",
+      "Q1 = df['Sales'].median()",
+      "upper_bound = Q3 + 1.5 * IQR"
+    ],
+    "correct_answer": [
+      "Q1 = df['Sales'].quantile(0.25)",
+      "Q3 = df['Sales'].quantile(0.75)",
+      "IQR = Q3 - Q1",
+      "upper_bound = Q3 + 1.5 * IQR"
+    ],
+    "explanation": "Outliers are defined as values beyond 1.5 times the Interquartile Range (IQR) from the quartiles. The upper bound is the 3rd quartile (Q3) plus 1.5 * IQR.",
+    "xp_reward": 50
+  },
+  {
+    "id": "stats_mcq_001",
+    "topic": "Stats",
+    "subtopic": "Descriptive Statistics",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Which metric is the most robust to outliers in a skewed data distribution?",
+    "options": [
+      "Mean",
+      "Median",
+      "Standard Deviation",
+      "Range"
+    ],
+    "correct_answer": "Median",
+    "explanation": "The median represents the middle value of sorted data. Unlike the mean, which sums all values (including extreme outliers), the median is positional and resistant to extreme observations.",
+    "xp_reward": 10
+  },
+  {
+    "id": "stats_mcq_002",
+    "topic": "Stats",
+    "subtopic": "Hypothesis Testing",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "In A/B testing, what does the Null Hypothesis (H0) typically claim?",
+    "options": [
+      "There is no difference in conversion rates between the control and treatment groups.",
+      "The treatment group performs significantly better than the control group.",
+      "The experiment has a low statistical power.",
+      "The results are statistically significant."
+    ],
+    "correct_answer": "There is no difference in conversion rates between the control and treatment groups.",
+    "explanation": "The Null Hypothesis (H0) is the default assumption that there is no real effect or difference. Any observed difference between the groups is assumed to be due to random chance.",
+    "xp_reward": 10
+  },
+  {
+    "id": "stats_mcq_003",
+    "topic": "Stats",
+    "subtopic": "Hypothesis Testing",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What is a Type I error (False Positive) in hypothesis testing?",
+    "options": [
+      "Rejecting the null hypothesis when it is actually true.",
+      "Failing to reject the null hypothesis when it is actually false.",
+      "Setting the statistical power too high.",
+      "Using a sample size that is too small for significance."
+    ],
+    "correct_answer": "Rejecting the null hypothesis when it is actually true.",
+    "explanation": "A Type I error occurs when we conclude that a difference or effect exists (rejecting the null hypothesis) when in reality there is no effect (null hypothesis is true).",
+    "xp_reward": 25
+  },
+  {
+    "id": "stats_mcq_004",
+    "topic": "Stats",
+    "subtopic": "Hypothesis Testing",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What does a statistical power of 80% mean in A/B testing?",
+    "options": [
+      "There is an 80% chance of correctly rejecting the null hypothesis if a real effect exists.",
+      "There is an 80% chance of making a Type I error.",
+      "The conversion rate will improve by exactly 80%.",
+      "80% of the sample will be assigned to the treatment group."
+    ],
+    "correct_answer": "There is an 80% chance of correctly rejecting the null hypothesis if a real effect exists.",
+    "explanation": "Statistical power (1 - beta) is the probability of correctly rejecting the null hypothesis when the alternative hypothesis is true. An 80% power level is standard for A/B tests.",
+    "xp_reward": 25
+  },
+  {
+    "id": "stats_mcq_005",
+    "topic": "Stats",
+    "subtopic": "Hypothesis Testing",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "If the p-value of a hypothesis test is 0.03, and the significance level (alpha) is 0.05, what is the correct statistical decision?",
+    "options": [
+      "Reject the null hypothesis; the result is statistically significant.",
+      "Fail to reject the null hypothesis; the result is not statistically significant.",
+      "Increase the sample size and re-run the test.",
+      "Accept the alternative hypothesis with 100% certainty."
+    ],
+    "correct_answer": "Reject the null hypothesis; the result is statistically significant.",
+    "explanation": "Since the p-value (0.03) is less than the significance level (0.05), we reject the null hypothesis and conclude that the difference is statistically significant.",
+    "xp_reward": 25
+  },
+  {
+    "id": "stats_mcq_006",
+    "topic": "Stats",
+    "subtopic": "Hypothesis Testing",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "What is the relationship between Type I error (alpha) and Type II error (beta) in hypothesis testing?",
+    "options": [
+      "They are inversely related; decreasing alpha increases beta, and vice versa.",
+      "They are directly proportional; decreasing alpha decreases beta.",
+      "They are independent; changing one has no effect on the other.",
+      "Their sum is always equal to 1."
+    ],
+    "correct_answer": "They are inversely related; decreasing alpha increases beta, and vice versa.",
+    "explanation": "For a fixed sample size, alpha and beta are inversely related. Tightening the threshold to avoid false positives (reducing alpha) increases the risk of failing to detect a real effect (increasing beta).",
+    "xp_reward": 50
+  },
+  {
+    "id": "stats_mcq_007",
+    "topic": "Stats",
+    "subtopic": "Business Metrics",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "How is Customer Lifetime Value (LTV) calculated using basic SaaS metrics?",
+    "options": [
+      "Average Purchase Value * Purchase Frequency * Customer Lifespan",
+      "Total Revenue / Customer Acquisition Cost (CAC)",
+      "Monthly Recurring Revenue (MRR) * Churn Rate",
+      "Average Profit per Customer / Customer Lifespan"
+    ],
+    "correct_answer": "Average Purchase Value * Purchase Frequency * Customer Lifespan",
+    "explanation": "The basic formula for LTV is the product of the average purchase value, how frequently they purchase in a period, and their average retention lifespan.",
+    "xp_reward": 50
+  },
+  {
+    "id": "stats_mcq_008",
+    "topic": "Stats",
+    "subtopic": "Descriptive Statistics",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What is the main difference between Correlation and Causation?",
+    "options": [
+      "Correlation indicates a direct cause-and-effect relationship, whereas Causation does not.",
+      "Correlation implies two variables move together, while Causation indicates that changes in one variable directly cause changes in the other.",
+      "Correlation is evaluated using a t-test, whereas Causation is evaluated using a standard deviation.",
+      "There is no functional difference; both terms can be used interchangeably in data analysis."
+    ],
+    "correct_answer": "Correlation implies two variables move together, while Causation indicates that changes in one variable directly cause changes in the other.",
+    "explanation": "Correlation is simply an association or joint movement between two variables (e.g. ice cream sales and drowning rates). Causation means one variable directly influences or triggers the change in the other (e.g. discount hikes causing lower profit margins).",
+    "xp_reward": 10
+  },
+  {
+    "id": "stats_code_001",
+    "topic": "Stats",
+    "subtopic": "Descriptive Statistics",
+    "difficulty": "easy",
+    "type": "interactive_coding",
+    "question": "Compute both the mean and median of column 'sales' using Pandas.",
+    "options": [
+      "mean_val = df['sales'].avg()",
+      "mean_val = df['sales'].mean()",
+      "median_val = df['sales'].middle()",
+      "mean_val = mean(df['sales'])",
+      "median_val = percentile(df['sales'], 50)",
+      "median_val = df['sales'].median()"
+    ],
+    "correct_answer": [
+      "mean_val = df['sales'].mean()",
+      "median_val = df['sales'].median()"
+    ],
+    "explanation": "In Pandas, we use `.mean()` to compute the average value and `.median()` to compute the positional middle value.",
+    "xp_reward": 10
+  },
+  {
+    "id": "stats_code_002",
+    "topic": "Stats",
+    "subtopic": "Business Metrics",
+    "difficulty": "easy",
+    "type": "interactive_coding",
+    "question": "Write code to calculate the Conversion Rate (%) given 'conversions' and 'visitors' columns.",
+    "options": [
+      "+ 100",
+      "conversion_rate = visitors / conversions",
+      "conversion_rate = conversions / visitors",
+      "/ 100",
+      "conversion_rate = conversions * visitors",
+      "* 100"
+    ],
+    "correct_answer": [
+      "conversion_rate = conversions / visitors",
+      "* 100"
+    ],
+    "explanation": "Conversion Rate is calculated by dividing the number of successful conversions by the total number of visitors, then multiplying by 100 to get the percentage.",
+    "xp_reward": 10
+  },
+  {
+    "id": "stats_code_003",
+    "topic": "Stats",
+    "subtopic": "Descriptive Statistics",
+    "difficulty": "medium",
+    "type": "interactive_coding",
+    "question": "Find the 90th percentile of column 'Profit' in DataFrame 'df'.",
+    "options": [
+      "p90 = df['Profit']",
+      ".percentile(90)",
+      ".quantile(90)",
+      "p90 = percentile(df['Profit'], 90)",
+      ".std(0.90)",
+      ".quantile(0.90)"
+    ],
+    "correct_answer": [
+      "p90 = df['Profit']",
+      ".quantile(0.90)"
+    ],
+    "explanation": "In Pandas, percentiles are calculated using the `.quantile()` method, passing a value between 0.0 and 1.0 (e.g., 0.90 for the 90th percentile).",
+    "xp_reward": 25
+  },
+  {
+    "id": "stats_code_004",
+    "topic": "Stats",
+    "subtopic": "Business Metrics",
+    "difficulty": "medium",
+    "type": "interactive_coding",
+    "question": "Calculate the Churn Rate (%) given 'lost_customers' and 'total_customers'.",
+    "options": [
+      "churn_rate = (total_customers / lost_customers)",
+      "churn_rate = (lost_customers / total_customers)",
+      "churn_rate = lost_customers * total_customers",
+      "/ 100",
+      "- 100",
+      "* 100"
+    ],
+    "correct_answer": [
+      "churn_rate = (lost_customers / total_customers)",
+      "* 100"
+    ],
+    "explanation": "Churn Rate is the proportion of customers lost over a period. It is computed as (lost_customers / total_customers) * 100.",
+    "xp_reward": 25
+  },
+  {
+    "id": "stats_code_005",
+    "topic": "Stats",
+    "subtopic": "Business Metrics",
+    "difficulty": "medium",
+    "type": "interactive_coding",
+    "question": "Calculate the LTV:CAC ratio given LTV (Lifetime Value) and CAC (Customer Acquisition Cost) variables.",
+    "options": [
+      "ratio = cac / ltv",
+      "ratio = ltv * cac",
+      "ratio = ltv / cac",
+      "ratio = (ltv - cac) / cac",
+      "ratio = ltv + cac"
+    ],
+    "correct_answer": [
+      "ratio = ltv / cac"
+    ],
+    "explanation": "The LTV:CAC ratio measures the value of a customer relative to the cost of acquiring them, computed by dividing LTV by CAC.",
+    "xp_reward": 25
+  },
+  {
+    "id": "stats_code_006",
+    "topic": "Stats",
+    "subtopic": "Hypothesis Testing",
+    "difficulty": "hard",
+    "type": "interactive_coding",
+    "question": "Use scipy.stats to run a two-sample independent t-test between group_A and group_B conversion values.",
+    "options": [
+      "import scipy.stats as stats",
+      "t_stat, p_val = stats.ttest_rel(",
+      "t_stat, p_val = stats.chisquare(",
+      "group_A + group_B",
+      "stats.anova()",
+      "t_stat, p_val = stats.ttest_ind(",
+      "group_A, group_B)"
+    ],
+    "correct_answer": [
+      "import scipy.stats as stats",
+      "t_stat, p_val = stats.ttest_ind(",
+      "group_A, group_B)"
+    ],
+    "explanation": "For comparing the means of two independent groups (like conversion rates of A/B test groups), we use the independent two-sample t-test stats.ttest_ind().",
+    "xp_reward": 50
+  },
+  {
+    "id": "stats_code_007",
+    "topic": "Stats",
+    "subtopic": "Descriptive Statistics",
+    "difficulty": "hard",
+    "type": "interactive_coding",
+    "question": "Calculate the z-score of column 'Sales' in DataFrame 'df' to identify outliers.",
+    "options": [
+      "mean = df['Sales'].mean()",
+      "std_dev = df['Sales'].std()",
+      "z_scores = (df['Sales'] - std_dev) / mean",
+      "z_scores = df['Sales'] / std_dev",
+      "mean = df['Sales'].median()",
+      "std_dev = df['Sales'].var()",
+      "z_scores = (df['Sales'] - mean) / std_dev"
+    ],
+    "correct_answer": [
+      "mean = df['Sales'].mean()",
+      "std_dev = df['Sales'].std()",
+      "z_scores = (df['Sales'] - mean) / std_dev"
+    ],
+    "explanation": "The z-score measures how many standard deviations a data point is from the mean. It is calculated as: (value - mean) / standard_deviation.",
+    "xp_reward": 50
+  },
+  {
+    "id": "stats_code_008",
+    "topic": "Stats",
+    "subtopic": "Descriptive Statistics",
+    "difficulty": "easy",
+    "type": "interactive_coding",
+    "question": "Calculate both standard deviation and variance for the 'profit' column in Pandas.",
+    "options": [
+      "std_val = df['profit'].std()",
+      "std_val = df['profit'].var()",
+      "var_val = df['profit'].variance()",
+      "var_val = df['profit'].var()",
+      "std_val = df['profit'].stdev()",
+      "var_val = df['profit'].std() ** 0.5"
+    ],
+    "correct_answer": [
+      "std_val = df['profit'].std()",
+      "var_val = df['profit'].var()"
+    ],
+    "explanation": "In Pandas, standard deviation is computed with `.std()` and variance is computed with `.var()`.",
+    "xp_reward": 10
+  },
+  {
+    "id": "excel_mcq_001",
+    "topic": "Excel",
+    "subtopic": "Lookup Formulas",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Which of the following is a key advantage of XLOOKUP over traditional VLOOKUP in Excel?",
+    "options": [
+      "XLOOKUP can perform lookups to the left, defaults to exact match, and is computationally faster.",
+      "XLOOKUP requires columns to be sorted in ascending order to work.",
+      "XLOOKUP only works with numbers and cannot search text strings.",
+      "XLOOKUP can only look up columns to the right, just like VLOOKUP."
+    ],
+    "correct_answer": "XLOOKUP can perform lookups to the left, defaults to exact match, and is computationally faster.",
+    "explanation": "XLOOKUP overcomes VLOOKUP's limitations: it can search columns to the left of the lookup column, defaults to exact matching, and does not require entire table arrays, making it faster.",
+    "xp_reward": 10
+  },
+  {
+    "id": "excel_mcq_002",
+    "topic": "Excel",
+    "subtopic": "Math and Trig",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What is the correct order of arguments in the SUMIFS function?",
+    "options": [
+      "SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)",
+      "SUMIFS(criteria_range1, criteria1, sum_range)",
+      "SUMIFS(sum_range, criteria_range1, criteria_range2, criteria1, criteria2)",
+      "SUMIFS(criteria1, criteria_range1, sum_range)"
+    ],
+    "correct_answer": "SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)",
+    "explanation": "In SUMIFS, the range to be summed (sum_range) is placed first, followed by pairs of criteria_range and criteria.",
+    "xp_reward": 10
+  },
+  {
+    "id": "excel_mcq_003",
+    "topic": "Excel",
+    "subtopic": "Statistical Formulas",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which Excel formula should you use to count cells that are not empty and meet a specific condition?",
+    "options": [
+      "COUNTIF",
+      "COUNTA",
+      "COUNTBLANK",
+      "COUNT"
+    ],
+    "correct_answer": "COUNTIF",
+    "explanation": "COUNTIF counts the number of cells within a range that meet a single criteria. COUNTA counts all non-empty cells regardless of content, and COUNT only counts cells with numbers.",
+    "xp_reward": 25
+  },
+  {
+    "id": "excel_mcq_004",
+    "topic": "Excel",
+    "subtopic": "Logical Formulas",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "How does the IFS function handle evaluations when multiple conditions are true?",
+    "options": [
+      "It returns the value corresponding to the first true condition it encounters.",
+      "It returns the values of all true conditions concatenated.",
+      "It raises a #VALUE! error because conditions must be mutually exclusive.",
+      "It returns the value of the last true condition in the list."
+    ],
+    "correct_answer": "It returns the value corresponding to the first true condition it encounters.",
+    "explanation": "The IFS function evaluates conditions in the order they are written and returns the value of the first condition that evaluates to TRUE.",
+    "xp_reward": 25
+  },
+  {
+    "id": "excel_mcq_005",
+    "topic": "Excel",
+    "subtopic": "Text Formulas",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What is the purpose of the TEXT function in Excel?",
+    "options": [
+      "To convert a numeric value to a text string and apply a custom format.",
+      "To count the number of characters in a text string.",
+      "To combine text strings from multiple cells.",
+      "To check if a cell contains text rather than a number."
+    ],
+    "correct_answer": "To convert a numeric value to a text string and apply a custom format.",
+    "explanation": "The TEXT function takes a number (like a date, currency, or decimal) and converts it to text formatting specified by a format code (e.g. TEXT(A1, \"$#,##0.00\")).",
+    "xp_reward": 25
+  },
+  {
+    "id": "excel_mcq_006",
+    "topic": "Excel",
+    "subtopic": "Pivot Tables",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What is the primary function of Slicers in Excel Pivot Tables?",
+    "options": [
+      "To filter Pivot Table data visually and interactively.",
+      "To cut rows or columns out of the source database permanently.",
+      "To automatically create calculated fields in the Pivot Table.",
+      "To export Pivot Table summaries to a separate text file."
+    ],
+    "correct_answer": "To filter Pivot Table data visually and interactively.",
+    "explanation": "Slicers are visual filtering components that let users click buttons to quickly filter data in a Pivot Table or Pivot Chart.",
+    "xp_reward": 25
+  },
+  {
+    "id": "excel_mcq_007",
+    "topic": "Excel",
+    "subtopic": "Basics",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What does a cell reference like '$B$4' represent in Excel?",
+    "options": [
+      "An absolute reference where both the column and row are locked when copied.",
+      "A relative reference that shifts dynamically as you copy the formula.",
+      "A mixed reference locking only the row index.",
+      "A mixed reference locking only the column index."
+    ],
+    "correct_answer": "An absolute reference where both the column and row are locked when copied.",
+    "explanation": "The dollar sign ($) before column 'B' and row '4' makes it an absolute reference. When the formula is copied or dragged, the reference stays locked to cell B4.",
+    "xp_reward": 10
+  },
+  {
+    "id": "excel_mcq_008",
+    "topic": "Excel",
+    "subtopic": "Lookup Formulas",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "Why is the INDEX and MATCH combination often preferred over VLOOKUP for large spreadsheets?",
+    "options": [
+      "It is more flexible (allows left lookups), does not require column numbering, and performs faster because it doesn't scan the entire table array.",
+      "It automatically runs in a background thread to prevent Excel freezes.",
+      "It allows you to look up values across multiple Excel files without opening them.",
+      "It converts text data to values automatically, preventing type mismatch errors."
+    ],
+    "correct_answer": "It is more flexible (allows left lookups), does not require column numbering, and performs faster because it doesn't scan the entire table array.",
+    "explanation": "INDEX and MATCH separate the value lookup range from the match column range. It is much more robust because adding columns won't break the formula, and it only references two single-column ranges instead of a huge table array, saving processing time.",
+    "xp_reward": 50
+  },
+  {
+    "id": "excel_code_001",
+    "topic": "Excel",
+    "subtopic": "Math and Trig",
+    "difficulty": "easy",
+    "type": "interactive_coding",
+    "question": "Write a SUMIFS formula to sum Sales where Region is 'West' and Category is 'Technology'.",
+    "options": [
+      "E100",
+      "=SUMIFS(Sales, Region,",
+      "'West', Category,",
+      "'West', 'Technology', Sales)",
+      "=SUMIFS(Sales, 'West', 'Technology')",
+      "'Technology')",
+      "=SUMIF(Sales, 'West', 'Technology')"
+    ],
+    "correct_answer": [
+      "=SUMIFS(Sales, Region,",
+      "'West', Category,",
+      "'Technology')"
+    ],
+    "explanation": "SUMIFS takes sum_range first (Sales), then criteria_range1 (Region), criteria1 ('West'), criteria_range2 (Category), criteria2 ('Technology').",
+    "xp_reward": 10
+  },
+  {
+    "id": "excel_code_002",
+    "topic": "Excel",
+    "subtopic": "Lookup Formulas",
+    "difficulty": "easy",
+    "type": "interactive_coding",
+    "question": "Write an XLOOKUP formula to look up the ID in cell A2 from the column CustomerTable[ID], returning CustomerTable[Name], defaulting to 'Not Found'.",
+    "options": [
+      "=XLOOKUP(A2,",
+      "CustomerTable[ID],",
+      "=VLOOKUP(A2, CustomerTable, 2, FALSE)",
+      "CustomerTable[Name],",
+      "'Not Found')",
+      "CustomerTable,",
+      "=XLOOKUP(A2, CustomerTable[Name], CustomerTable[ID])",
+      "=LOOKUP(A2, CustomerTable[ID])"
+    ],
+    "correct_answer": [
+      "=XLOOKUP(A2,",
+      "CustomerTable[ID],",
+      "CustomerTable[Name],",
+      "'Not Found')"
+    ],
+    "explanation": "XLOOKUP takes lookup_value (A2), lookup_array (CustomerTable[ID]), return_array (CustomerTable[Name]), and [if_not_found] ('Not Found').",
+    "xp_reward": 10
+  },
+  {
+    "id": "excel_code_003",
+    "topic": "Excel",
+    "subtopic": "Logical Formulas",
+    "difficulty": "medium",
+    "type": "interactive_coding",
+    "question": "Write a nested IF formula: if cell A2 > 0.4 then 'High Risk', else if A2 > 0.2 then 'Medium', else 'Safe'.",
+    "options": [
+      "=IF(A2 > 0.4,",
+      "'High Risk',",
+      "IF(A2 > 0.2,",
+      "'Medium', 'Safe'))",
+      "=IF(A2 > 0.4, 'High Risk', 'Safe')",
+      "=IFS(A2 > 0.4, 'High Risk', A2 > 0.2)",
+      "IF A2 > 0.4 THEN 'High Risk'",
+      "=IF(A2 > 0.4, 'Safe', 'Medium')"
+    ],
+    "correct_answer": [
+      "=IF(A2 > 0.4,",
+      "'High Risk',",
+      "IF(A2 > 0.2,",
+      "'Medium', 'Safe'))"
+    ],
+    "explanation": "A nested IF places a second IF statement inside the value_if_false position of the first IF statement, evaluating conditions hierarchically.",
+    "xp_reward": 25
+  },
+  {
+    "id": "excel_code_004",
+    "topic": "Excel",
+    "subtopic": "Statistical Formulas",
+    "difficulty": "easy",
+    "type": "interactive_coding",
+    "question": "Write a COUNTIF formula to count values in the range B2:B20 that are strictly greater than 1000.",
+    "options": [
+      "=COUNTIF(B2:B20,",
+      "'>1000')",
+      "=COUNTIF(B2:B20, >1000)",
+      "=COUNT(B2:B20 > 1000)",
+      "=SUMIF(B2:B20, '>1000')",
+      "COUNTIF(>1000)"
+    ],
+    "correct_answer": [
+      "=COUNTIF(B2:B20,",
+      "'>1000')"
+    ],
+    "explanation": "COUNTIF requires the range first, and then the criteria. Comparison criteria like >1000 must be enclosed in double quotes.",
+    "xp_reward": 10
+  },
+  {
+    "id": "excel_code_005",
+    "topic": "Excel",
+    "subtopic": "Text Formulas",
+    "difficulty": "medium",
+    "type": "interactive_coding",
+    "question": "Write a TEXT formula to format a date in cell A2 into a full month name (e.g. 'January').",
+    "options": [
+      "=TEXT(A2,",
+      "'mmmm')",
+      "=MONTHNAME(A2)",
+      "=FORMAT(A2, 'month')",
+      "=TEXT(A2, 'mmm')",
+      "=TEXT(A2, 'mm')"
+    ],
+    "correct_answer": [
+      "=TEXT(A2,",
+      "'mmmm')"
+    ],
+    "explanation": "The format code 'mmmm' returns the full month name of a date. 'mmm' returns the abbreviation (e.g. 'Jan').",
+    "xp_reward": 25
+  },
+  {
+    "id": "excel_code_006",
+    "topic": "Excel",
+    "subtopic": "Logical Formulas",
+    "difficulty": "medium",
+    "type": "interactive_coding",
+    "question": "Write an IFS formula to evaluate cell A2: score >= 90 is 'A', score >= 80 is 'B', and all other cases are 'C'.",
+    "options": [
+      "=IFS(A2 >= 90, 'A',",
+      "A2 >= 80, 'B',",
+      "TRUE, 'C')",
+      "=IFS(A2 >= 90, 'A', A2 >= 80, 'B')",
+      "=IFS(A2 >= 90, 'A', ELSE 'C')",
+      "=IF(A2 >= 90, 'A', IF(A2 >= 80, 'B'))",
+      "=IFS(A2 >= 90, A2 >= 80, 'C')"
+    ],
+    "correct_answer": [
+      "=IFS(A2 >= 90, 'A',",
+      "A2 >= 80, 'B',",
+      "TRUE, 'C')"
+    ],
+    "explanation": "IFS evaluates expressions sequentially. To capture a final catch-all condition (like 'else'), use TRUE as the final logical condition.",
+    "xp_reward": 25
+  },
+  {
+    "id": "excel_code_007",
+    "topic": "Excel",
+    "subtopic": "Statistical Formulas",
+    "difficulty": "medium",
+    "type": "interactive_coding",
+    "question": "Write an AVERAGEIF formula to compute the average of E:E where cell values are greater than 0.",
+    "options": [
+      "=AVERAGEIF(E:E,",
+      "'>0')",
+      "=AVERAGE(E:E, '>0')",
+      "=MEANIF(E:E, '>0')",
+      "=AVERAGEIF(E:E > 0)",
+      "=AVERAGEIFS(E:E, E:E, 0)"
+    ],
+    "correct_answer": [
+      "=AVERAGEIF(E:E,",
+      "'>0')"
+    ],
+    "explanation": "AVERAGEIF calculates the average of cells meeting a criteria. Range is E:E, criteria is '>0'.",
+    "xp_reward": 25
+  },
+  {
+    "id": "excel_code_008",
+    "topic": "Excel",
+    "subtopic": "Lookup Formulas",
+    "difficulty": "hard",
+    "type": "interactive_coding",
+    "question": "Use INDEX and MATCH to lookup price in 'Price_List' corresponding to Product_ID in cell A2 matched against 'Product_List'. Use exact match.",
+    "options": [
+      "=INDEX(Price_List,",
+      "MATCH(A2, Product_List, 0))",
+      "=MATCH(INDEX(Price_List, A2, 0))",
+      "=LOOKUP(A2, Price_List, Product_List)",
+      "=INDEX(Product_List, MATCH(A2, Price_List, 0))",
+      "=VLOOKUP(A2, Price_List, 2)"
+    ],
+    "correct_answer": [
+      "=INDEX(Price_List,",
+      "MATCH(A2, Product_List, 0))"
+    ],
+    "explanation": "INDEX returns the value at a row index from the target array (Price_List). MATCH finds the row index of A2 in Product_List with exact match (0).",
+    "xp_reward": 50
+  },
+  {
+    "id": "pb_tab_mcq_001",
+    "topic": "PowerBI",
+    "subtopic": "Data Modeling",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What is the key difference between a Fact table and a Dimension table in data modeling?",
+    "options": [
+      "Fact tables store quantitative metrics (sales, quantity), while Dimension tables store descriptive attributes (product details, customer name).",
+      "Fact tables store descriptive properties, while Dimension tables store values.",
+      "Fact tables are always smaller in row count than Dimension tables.",
+      "Fact tables cannot have duplicate key values, whereas Dimension tables can."
+    ],
+    "correct_answer": "Fact tables store quantitative metrics (sales, quantity), while Dimension tables store descriptive attributes (product details, customer name).",
+    "explanation": "In dimensional modeling, Fact tables contain quantitative data (measurements/transactions) and foreign keys. Dimension tables contain details describing those keys (contextual data).",
+    "xp_reward": 10
+  },
+  {
+    "id": "pb_tab_mcq_002",
+    "topic": "PowerBI",
+    "subtopic": "DAX Functions",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What is the primary role of the CALCULATE function in DAX?",
+    "options": [
+      "It evaluates an expression under a modified filter context.",
+      "It performs simple arithmetic additions across tables.",
+      "It converts string columns into integer values in Power BI.",
+      "It forces Power BI to refresh its underlying cache."
+    ],
+    "correct_answer": "It evaluates an expression under a modified filter context.",
+    "explanation": "CALCULATE is the most powerful function in DAX. It evaluates a measure after modifying, adding, or overriding the current filter context.",
+    "xp_reward": 25
+  },
+  {
+    "id": "pb_tab_mcq_003",
+    "topic": "PowerBI",
+    "subtopic": "Data Modeling",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Why is the Star Schema design highly recommended for Power BI data models?",
+    "options": [
+      "It minimizes relationships/joins, improves query performance, and simplifies DAX writing.",
+      "It stores all data in a single massive flat table.",
+      "It automatically encrypts confidential client database tables.",
+      "It allows tables to connect in a circular relationship pattern."
+    ],
+    "correct_answer": "It minimizes relationships/joins, improves query performance, and simplifies DAX writing.",
+    "explanation": "The Star Schema structures data into a central fact table joined directly to dimension tables. This is highly optimized for performance and makes DAX formulas simpler to write.",
+    "xp_reward": 25
+  },
+  {
+    "id": "pb_tab_mcq_004",
+    "topic": "PowerBI",
+    "subtopic": "DAX Functions",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which of the following is a strict requirement for utilizing DAX Time Intelligence functions?",
+    "options": [
+      "A dedicated, continuous Date table with no missing dates in the range.",
+      "The dataset must be loaded using DirectQuery storage mode.",
+      "All date columns must be formatted as strings.",
+      "The Date table must only contain weekdays (no weekends)."
+    ],
+    "correct_answer": "A dedicated, continuous Date table with no missing dates in the range.",
+    "explanation": "DAX Time Intelligence functions require a dedicated Date dimension table containing consecutive dates covering the entire year ranges with no gaps.",
+    "xp_reward": 25
+  },
+  {
+    "id": "pb_tab_mcq_005",
+    "topic": "Tableau",
+    "subtopic": "LOD Expressions",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "In Tableau, which Level of Detail (LOD) expression computes values using specified dimensions without reference to dimensions in the view?",
+    "options": [
+      "FIXED",
+      "INCLUDE",
+      "EXCLUDE",
+      "NESTED"
+    ],
+    "correct_answer": "FIXED",
+    "explanation": "The FIXED LOD expression computes values using only the specified dimensions, ignoring any dimensions present in the visualization view.",
+    "xp_reward": 50
+  },
+  {
+    "id": "pb_tab_mcq_006",
+    "topic": "PowerBI",
+    "subtopic": "Data Modeling",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "How does Power BI handle relationships between two tables when multiple relationship paths exist?",
+    "options": [
+      "Only one relationship can be active; other relationships must be inactive and can be activated using USERELATIONSHIP in DAX.",
+      "It automatically merges the tables into a single direct relationship.",
+      "It raises a circular reference error and halts rendering.",
+      "All relationships are active simultaneously and contribute to filter context."
+    ],
+    "correct_answer": "Only one relationship can be active; other relationships must be inactive and can be activated using USERELATIONSHIP in DAX.",
+    "explanation": "To prevent ambiguity, Power BI only allows one active relationship between two tables at a time. Alternate relationships are set to 'inactive' and can be invoked using the USERELATIONSHIP function inside a CALCULATE statement.",
+    "xp_reward": 25
+  },
+  {
+    "id": "pb_tab_mcq_007",
+    "topic": "PowerBI",
+    "subtopic": "Architecture",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "What is a main disadvantage of using DirectQuery mode instead of Import mode in Power BI?",
+    "options": [
+      "Slower query performance because data is retrieved from the data source on-the-fly, and limited DAX features.",
+      "Data size is capped at 1 GB total size.",
+      "DirectQuery does not support any data visualizations.",
+      "Scheduled refresh cannot be configured at all."
+    ],
+    "correct_answer": "Slower query performance because data is retrieved from the data source on-the-fly, and limited DAX features.",
+    "explanation": "DirectQuery queries the source database directly when a user interacts with a report. This can be slower due to network latency/source load and restricts many advanced DAX functions compared to in-memory Import mode.",
+    "xp_reward": 50
+  },
+  {
+    "id": "pb_tab_mcq_008",
+    "topic": "Tableau",
+    "subtopic": "Basics",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "In Tableau, how do Dimensions differ from Measures?",
+    "options": [
+      "Dimensions slice or segment data, whereas Measures contain values that are aggregated.",
+      "Dimensions represent numerical data, whereas Measures are always categorical labels.",
+      "Dimensions are shown in green pills, and Measures are always shown in blue pills.",
+      "There is no difference; they are alternative names for columns."
+    ],
+    "correct_answer": "Dimensions slice or segment data, whereas Measures contain values that are aggregated.",
+    "explanation": "Dimensions contain qualitative values (like names, dates, or geographical data) used to slice or group data. Measures contain quantitative values (like sales or profit) that can be aggregated mathematically.",
+    "xp_reward": 10
+  },
+  {
+    "id": "pb_tab_code_001",
+    "topic": "PowerBI",
+    "subtopic": "DAX Functions",
+    "difficulty": "easy",
+    "type": "interactive_coding",
+    "question": "Write a DAX measure to calculate Profit Margin safely, handling division by zero.",
+    "options": [
+      "Profit Margin = DIVIDE(",
+      "[Total Profit],",
+      "[Total Sales],",
+      "0)",
+      "Profit Margin = [Total Profit] / [Total Sales]",
+      "Profit Margin = CALCULATE(Profit / Sales)",
+      "Profit Margin = DIVIDE(Total Profit, Total Sales)",
+      "IFERROR([Total Profit] / [Total Sales])"
+    ],
+    "correct_answer": [
+      "Profit Margin = DIVIDE(",
+      "[Total Profit],",
+      "[Total Sales],",
+      "0)"
+    ],
+    "explanation": "In DAX, the DIVIDE function divides a numerator by a denominator and safely handles division by zero by returning an optional third parameter (0 here) or BLANK.",
+    "xp_reward": 10
+  },
+  {
+    "id": "pb_tab_code_002",
+    "topic": "PowerBI",
+    "subtopic": "DAX Functions",
+    "difficulty": "medium",
+    "type": "interactive_coding",
+    "question": "Write a DAX measure to calculate Year-to-Date (YTD) Sales using the TOTALYTD function.",
+    "options": [
+      "YTD Sales = TOTALYTD(",
+      "[Total Sales],",
+      "Dates[Date])",
+      "YTD Sales = CALCULATE([Total Sales], YTD)",
+      "YTD Sales = DATESYTD(Sales)",
+      "YTD Sales = TOTALYTD(Sales)",
+      "Dates[Date], YTD"
+    ],
+    "correct_answer": [
+      "YTD Sales = TOTALYTD(",
+      "[Total Sales],",
+      "Dates[Date])"
+    ],
+    "explanation": "TOTALYTD evaluates a specified expression ([Total Sales]) over a dates column (Dates[Date]) from the current year start to current date.",
+    "xp_reward": 25
+  },
+  {
+    "id": "pb_tab_code_003",
+    "topic": "PowerBI",
+    "subtopic": "DAX Functions",
+    "difficulty": "medium",
+    "type": "interactive_coding",
+    "question": "Write a DAX measure to calculate sales for only the 'West' region using CALCULATE.",
+    "options": [
+      "West Sales = CALCULATE(",
+      "[Total Sales],",
+      "Customers[Region] = 'West')",
+      "West Sales = SUM(Sales) WHERE Region = 'West'",
+      "West Sales = FILTER([Total Sales], 'West')",
+      "West Sales = CALCULATE(Region = 'West')",
+      "Customers[Region] IN 'West'"
+    ],
+    "correct_answer": [
+      "West Sales = CALCULATE(",
+      "[Total Sales],",
+      "Customers[Region] = 'West')"
+    ],
+    "explanation": "CALCULATE modifies the filter context of the [Total Sales] measure, limiting it to rows where Customers[Region] equals 'West'.",
+    "xp_reward": 25
+  },
+  {
+    "id": "pb_tab_code_004",
+    "topic": "PowerBI",
+    "subtopic": "DAX Functions",
+    "difficulty": "medium",
+    "type": "interactive_coding",
+    "question": "Write a DAX measure using DATEADD to fetch previous month sales.",
+    "options": [
+      "Prev Month Sales = CALCULATE(",
+      "[Total Sales],",
+      "DATEADD(Dates[Date], -1, MONTH))",
+      "Prev Month Sales = LAG([Total Sales], 1, MONTH)",
+      "Prev Month Sales = DATEADD([Total Sales], -1)",
+      "Prev Month Sales = DATEADD(Dates[Date], -1)",
+      "Dates[Date], MONTH"
+    ],
+    "correct_answer": [
+      "Prev Month Sales = CALCULATE(",
+      "[Total Sales],",
+      "DATEADD(Dates[Date], -1, MONTH))"
+    ],
+    "explanation": "DATEADD shifts a dates column (Dates[Date]) back by 1 month (`-1, MONTH`). CALCULATE applies this shifted date context to the [Total Sales] measure.",
+    "xp_reward": 25
+  },
+  {
+    "id": "pb_tab_code_005",
+    "topic": "Tableau",
+    "subtopic": "LOD Expressions",
+    "difficulty": "hard",
+    "type": "interactive_coding",
+    "question": "Write a Tableau LOD expression to calculate total Sales fixed at the [Category] level.",
+    "options": [
+      "{ FIXED [Category] :",
+      "SUM([Sales]) }",
+      "{ INCLUDE [Category] : SUM([Sales]) }",
+      "{ FIXED SUM([Sales]) BY [Category] }",
+      "SUM(Sales) OVER (PARTITION BY Category)",
+      "{ FIXED Category : SUM(Sales) }"
+    ],
+    "correct_answer": [
+      "{ FIXED [Category] :",
+      "SUM([Sales]) }"
+    ],
+    "explanation": "Tableau LOD FIXED syntax is `{ FIXED [Dimension1], ... : AGGREGATION([Measure]) }`. It aggregates the measure ignoring other dimensions in the view.",
+    "xp_reward": 50
+  },
+  {
+    "id": "pb_tab_code_006",
+    "topic": "PowerBI",
+    "subtopic": "DAX Functions",
+    "difficulty": "medium",
+    "type": "interactive_coding",
+    "question": "Write a DAX measure to count the number of orders where profit is negative (< 0).",
+    "options": [
+      "Loss Orders = CALCULATE(",
+      "COUNTROWS(Orders),",
+      "Orders[Profit] < 0)",
+      "Loss Orders = COUNTROWS(Orders, Orders[Profit] < 0)",
+      "Loss Orders = FILTER(Orders, Profit < 0)",
+      "Loss Orders = COUNT(Orders) WHERE Profit < 0",
+      "Orders[Profit] < 0"
+    ],
+    "correct_answer": [
+      "Loss Orders = CALCULATE(",
+      "COUNTROWS(Orders),",
+      "Orders[Profit] < 0)"
+    ],
+    "explanation": "CALCULATE modifies the row count `COUNTROWS(Orders)` by filtering the Orders table to only include rows where `Orders[Profit] < 0`.",
+    "xp_reward": 25
+  },
+  {
+    "id": "pb_tab_code_007",
+    "topic": "Tableau",
+    "subtopic": "LOD Expressions",
+    "difficulty": "hard",
+    "type": "interactive_coding",
+    "question": "Write a Tableau LOD expression to sum Sales excluding the [Region] dimension from the view context.",
+    "options": [
+      "{ EXCLUDE [Region] :",
+      "SUM([Sales]) }",
+      "{ FIXED [Region] : SUM([Sales]) }",
+      "{ REMOVE [Region] : SUM([Sales]) }",
+      "{ EXCLUDE Region SUM(Sales) }",
+      "SUM([Sales])"
+    ],
+    "correct_answer": [
+      "{ EXCLUDE [Region] :",
+      "SUM([Sales]) }"
+    ],
+    "explanation": "Tableau EXCLUDE LOD syntax is `{ EXCLUDE [Dimension] : AGGREGATION([Measure]) }`. It removes the specified dimension from the visual's granularity calculation.",
+    "xp_reward": 50
+  },
+  {
+    "id": "pb_tab_code_008",
+    "topic": "PowerBI",
+    "subtopic": "DAX Functions",
+    "difficulty": "hard",
+    "type": "interactive_coding",
+    "question": "Write a DAX measure to calculate cumulative Sales using FILTER and ALL.",
+    "options": [
+      "Cumulative Sales = CALCULATE(",
+      "[Total Sales],",
+      "FILTER(ALL(Dates),",
+      "Dates[Date] <= MAX(Dates[Date])))",
+      "Cumulative Sales = TOTALYTD([Total Sales], Dates[Date])",
+      "Cumulative Sales = SUM([Total Sales]) OVER ()",
+      "Cumulative Sales = RUNNING_SUM([Total Sales])",
+      "Dates[Date] <= MAX(Dates[Date])"
+    ],
+    "correct_answer": [
+      "Cumulative Sales = CALCULATE(",
+      "[Total Sales],",
+      "FILTER(ALL(Dates),",
+      "Dates[Date] <= MAX(Dates[Date])))"
+    ],
+    "explanation": "To get a running total, we clear date filters using ALL(Dates), then use FILTER to accumulate dates up to the maximum date visible in the current filter context.",
+    "xp_reward": 50
+  }
+]

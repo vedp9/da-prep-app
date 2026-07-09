@@ -1,0 +1,80 @@
+import fs from 'fs';
+import path from 'path';
+import sharp from 'sharp';
+
+const svgContent = `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="110" fill="#090d16"/>
+  <defs>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+    <linearGradient id="glow-orange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fb923c" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer glowing circle ring -->
+  <circle cx="256" cy="256" r="210" fill="none" stroke="url(#glow)" stroke-width="8" opacity="0.15" />
+  <circle cx="256" cy="256" r="180" fill="none" stroke="url(#glow)" stroke-width="4" opacity="0.3" />
+  
+  <!-- Data Chart Graphic -->
+  <rect x="140" y="270" width="45" height="110" rx="8" fill="url(#glow)" opacity="0.5"/>
+  <rect x="210" y="200" width="45" height="180" rx="8" fill="url(#glow)" opacity="0.8"/>
+  <rect x="280" y="130" width="45" height="250" rx="8" fill="url(#glow)"/>
+  <rect x="350" y="230" width="45" height="150" rx="8" fill="url(#glow)" opacity="0.9"/>
+  
+  <!-- Trendline nodes -->
+  <circle cx="162.5" cy="230" r="12" fill="#22d3ee" stroke="#090d16" stroke-width="3"/>
+  <circle cx="232.5" cy="150" r="12" fill="#3b82f6" stroke="#090d16" stroke-width="3"/>
+  <circle cx="302.5" cy="90" r="14" fill="#60a5fa" stroke="#090d16" stroke-width="4"/>
+  <circle cx="372.5" cy="170" r="12" fill="#06b6d4" stroke="#090d16" stroke-width="3"/>
+  
+  <!-- Connective Trend Line -->
+  <path d="M 162.5 230 L 232.5 150 L 302.5 90 L 372.5 170" fill="none" stroke="#22d3ee" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+
+const publicDir = './public';
+if (!fs.existsSync(publicDir)) {
+  fs.mkdirSync(publicDir);
+}
+
+// Save SVG for reference
+fs.writeFileSync(path.join(publicDir, 'logo.svg'), svgContent);
+
+// Generate PWA icons using sharp
+async function generateIcons() {
+  const svgBuffer = Buffer.from(svgContent);
+
+  console.log('Generating PWA icons...');
+  
+  // 192x192
+  await sharp(svgBuffer)
+    .resize(192, 192)
+    .png()
+    .toFile(path.join(publicDir, 'pwa-192x192.png'));
+  console.log('pwa-192x192.png generated.');
+
+  // 512x512
+  await sharp(svgBuffer)
+    .resize(512, 512)
+    .png()
+    .toFile(path.join(publicDir, 'pwa-512x512.png'));
+  console.log('pwa-512x512.png generated.');
+
+  // 32x32 favicon
+  await sharp(svgBuffer)
+    .resize(32, 32)
+    .png()
+    .toFile(path.join(publicDir, 'favicon.ico'));
+  console.log('favicon.ico (32x32 png) generated.');
+
+  console.log('All icons generated successfully!');
+}
+
+generateIcons().catch(err => {
+  console.error('Error generating icons:', err);
+});
