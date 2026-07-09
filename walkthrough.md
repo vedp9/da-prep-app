@@ -100,3 +100,31 @@ Make sure you have [Node.js](https://nodejs.org) (v18 or higher recommended) ins
    npm run preview
    ```
    *Vite will spin up a preview server. You can audit it using Google Lighthouse or Chrome DevTools to verify PWA installability, service worker precaching, and offline capability.*
+
+---
+
+## Phase 3: Deployment & Updates
+
+### How to Deploy on Vercel
+1. Log in to [vercel.com](https://vercel.com) using your GitHub account.
+2. Click **"Add New"** > **"Project"**.
+3. Select your repository `da-prep-app`.
+4. Vercel will automatically detect that it is a **Vite** project and configure the build settings.
+5. Click **"Deploy"**. The app will be built and hosted on a public `.vercel.app` URL for free in about 30 seconds!
+
+### Progressive Web App (PWA) Features
+- The Vite PWA plugin manages the service worker (`sw.js`) and manifest automatically.
+- Your application features a fully responsive mobile container and Apple-specific status-bar keys so it feels like a native mobile app when installed.
+- Your friend can open the Vercel link on their phone, tap **"Add to Home Screen"** (iOS Safari Share menu or Android Chrome menu), and install it directly onto their phone. It will run fully offline!
+
+### How to Update Questions Later
+Whenever you get new questions to add to the tool:
+1. Replace the file at `da-prep-app/src/questions.json` with the new JSON data.
+2. In your terminal, run the following commands:
+   ```bash
+   git commit -am "added new questions"
+   git push
+   ```
+3. Vercel will detect the new commit on the `main` branch, rebuild the site, and update the app automatically in 30 seconds!
+4. Since the PWA uses the `autoUpdate` register strategy, the next time your friend opens the app, the service worker will fetch the new `questions.json` precached asset in the background and load the new content immediately.
+
